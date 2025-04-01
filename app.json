@@ -4,7 +4,7 @@
     "slug": "elec",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/adaptive-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,44 +14,41 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#1e212e"
-      },
-      "package": "com.okkonie.elec"
+      }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/icon.png"
+      "favicon": "./assets/images/adaptive-icon.png"
     },
     "plugins": [
       [
         "expo-screen-orientation",
         {
-          "initialOrientation": "LANDSCAPE_LEFT"
+          "initialOrientation": "DEFAULT"
         }
       ],
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/icon.png",
+          "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#1e212e"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#1e212e"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "b683c6d9-0d33-4181-a1dc-ddc3c6517fae"
-      }
     }
   }
 }
