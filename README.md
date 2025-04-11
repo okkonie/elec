@@ -1,6 +1,6 @@
 # elec
 
-electricity price application <br> <br>
+electricity price application <br>
 
 api: https://porssisahko.net/api <br> <br>
 <img src="https://github.com/user-attachments/assets/3e991879-5d2a-4545-af6f-6491371f1ebe" width="200" />
