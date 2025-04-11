@@ -9,7 +9,6 @@ export const checkAndFetchPrices = async () => {
     const today = new Date();
     const todayStr = today.toISOString().slice(0, 10);
     
-    // Keep prices from yesterday onwards
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
     const yesterdayStr = yesterday.toISOString().slice(0, 10);
@@ -29,7 +28,7 @@ export const checkAndFetchPrices = async () => {
     const todayPricesExist = Object.keys(prices).some((date) => date.startsWith(todayStr));
     const tomorrowPricesExist = Object.keys(prices).some((date) => date.startsWith(tomorrowStr));
 
-    if (!storedPrices ||!yesterdayPricesExist || !todayPricesExist || (!tomorrowPricesExist && isAfterTwoPM)) {
+    if (!storedPrices || !yesterdayPricesExist || !todayPricesExist || (!tomorrowPricesExist && isAfterTwoPM)) {
       console.log('Fetching new prices...');
       const response = await fetch('https://api.porssisahko.net/v1/latest-prices.json');
       const data = await response.json();

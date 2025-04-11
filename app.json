@@ -4,7 +4,7 @@
     "slug": "elec",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adaptive-icon.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,14 +14,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#1e212e"
       }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/adaptive-icon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       [
@@ -37,13 +37,13 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#1e212e"
+          "backgroundColor": "#101012"
         }
       ],
       [
         "expo-notifications",
         {
-          "color": "#1e212e"
+          "color": "#101012"
         }
       ]
     ],
