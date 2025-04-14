@@ -113,7 +113,7 @@ export default function Home() {
   }
 
   const maxPrice = Math.max(...displayPrices.map(([_, price]) => calculateAlvAndAddedPrices(price)));
-  const chartWidth = dimensions.width * 0.85;
+  const chartWidth = dimensions.width - 40;
   const effectiveZoom = Math.min(zoom, displayPrices.length);
   const barGap = 70 / effectiveZoom;
   const barWidth = (chartWidth - (effectiveZoom + 1) * barGap) / effectiveZoom;
@@ -138,7 +138,7 @@ export default function Home() {
       return '#fa5a5a';
     } else if (price > values[0]) {
       return '#facf5a';
-    }
+    };
     return '#83f07f';
   };
 
@@ -199,14 +199,14 @@ export default function Home() {
             <>
               <View style={styles.row}>
               {Number(displayPrices?.[0]?.[1]) >= Number(displayPrices?.[1]?.[1])
-              ? <Feather name="arrow-down-right" size={26} color='#83f07f' /> : <Feather name="arrow-up-right" size={26} color={red} />}
+              ? <Feather name="arrow-down-right" size={26} color='#83f07f' /> : <Feather name="arrow-up-right" size={26} color='#fa5a5a' />}
               <Text style={[styles.shownPrice, {fontSize: 35, color: 'white'}]}>
                 {calculateAlvAndAddedPrices(displayPrices?.[1]?.[1]).toFixed(2)}
               </Text>
               </View>
               <View style={styles.row}>
               {Number(displayPrices?.[1]?.[1]) >= Number(displayPrices?.[2]?.[1])
-              ? <Feather name="arrow-down-right" size={26} color='#83f07f' /> : <Feather name="arrow-up-right" size={26} color={red} />}
+              ? <Feather name="arrow-down-right" size={26} color='#83f07f' /> : <Feather name="arrow-up-right" size={26} color='#fa5a5a' />}
               <Text style={[styles.shownPrice, {fontSize: 35, color: 'white'}]}>
                 {calculateAlvAndAddedPrices(displayPrices?.[2]?.[1]).toFixed(2)}
               </Text>
@@ -294,6 +294,7 @@ export default function Home() {
                 </Modal>
               )}
             </View>
+            
             <View style={styles.settingRow}>
               <Text style={styles.contentText}>palkkien määrä</Text>
                 <TouchableOpacity 
@@ -400,8 +401,8 @@ export default function Home() {
       >
         <ScrollView 
           showsHorizontalScrollIndicator={false}
-          overScrollMode="never"
           horizontal={true} 
+          scrollEventThrottle={16} 
           
           contentContainerStyle={{ 
             flexDirection: 'row', 
@@ -425,30 +426,31 @@ export default function Home() {
               hour12: false,
             });
             return (
-              <Pressable 
-                key={dateTime} 
-                style={[styles.priceContainer, {opacity: isDimmed ? 0.4 : 1}]} 
-                onPress={() => {
-                  if (isFirstBar) {
-                    setSelectedTime(null);
-                  } else {
-                    setSelectedTime(selectedTime === dateTime ? null : dateTime);
-                  }
-                }}
-              >
-                <View 
-                  style={
-                    { 
-                      height: getBarHeight(calculateAlvAndAddedPrices(price)),
-                      minHeight: barWidth,
-                      width: barWidth,
-                      borderRadius: barWidth / 2,
-                      backgroundColor: getColor(calculateAlvAndAddedPrices(price)),
-                      borderCurve: 'circular',
-                    }}
-                />
-                <Text style={[styles.timeText, {fontSize: effectiveZoom > 10 ? barWidth / 1.5 : barWidth / 2, color: 'white'}]}>{formattedTime}</Text>
-              </Pressable>
+                <Pressable
+                  hitSlop={{ top: 200, bottom: 30 }}
+                  key={dateTime}
+                  style={[styles.priceContainer, {opacity: isDimmed ? 0.4 : 1}]} 
+                  onPress={() => {
+                    if (isFirstBar) {
+                      setSelectedTime(null);
+                    } else {
+                      setSelectedTime(selectedTime === dateTime ? null : dateTime);
+                    }
+                  }}
+                >
+                  <View 
+                    style={
+                      { 
+                        height: getBarHeight(calculateAlvAndAddedPrices(price)),
+                        minHeight: barWidth,
+                        width: barWidth,
+                        borderRadius: barWidth / 2,
+                        backgroundColor: getColor(calculateAlvAndAddedPrices(price)),
+                        borderCurve: 'circular',
+                      }}
+                  />
+                  <Text style={[styles.timeText, {fontSize: effectiveZoom > 10 ? barWidth / 1.5 : barWidth / 2, color: 'white'}]}>{formattedTime}</Text>
+                </Pressable>
             );
           })}
         </ScrollView>
@@ -548,20 +550,13 @@ const styles = StyleSheet.create({
   },
   settingsButton: {
     position: 'absolute',
-    bottom: -0,
-    right: -1,
+    top: 0,
+    right: 0,
+    padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
     borderCurve: 'circular',
-    width: '19%',
-    borderTopStartRadius: 25,
-    borderBottomEndRadius: 25,
-    borderTopWidth: 4,
-    borderLeftWidth: 4,
-    borderColor: '#101012',
-    aspectRatio: 1, 
     zIndex: 1000,
-    backgroundColor: '#2e2e2e'
   },
   settingsBack: {
     position: 'absolute',
