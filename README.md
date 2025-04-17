@@ -1,6 +1,5 @@
 # elec
-
-electricity price application <br>
+Mobile app, that shows electricity price in Finland <br>
 
 <img src="https://github.com/user-attachments/assets/201f50c8-b4ca-4c5e-935c-172162f7e3c5" width="200" />
 <img src="https://github.com/user-attachments/assets/4dc2da4b-d614-4737-90f5-5cf38d8b3c4b" width="200" />
